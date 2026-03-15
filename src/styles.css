@@ -245,6 +245,28 @@ main {
 .hero-title .highlight {
   color: var(--accent);
   text-shadow: 0 0 30px var(--accent);
+  transition: all 0.3s ease;
+}
+
+.hero-title .power-1000 {
+  color: #ff3333;
+  text-shadow: 0 0 40px #ff3333, 0 0 80px #ff0000;
+  animation: extremePulse 0.5s ease infinite;
+}
+
+.hero-title .power-500 {
+  color: #ff6633;
+  text-shadow: 0 0 35px #ff6633;
+}
+
+.hero-title .power-300 {
+  color: #ffaa33;
+  text-shadow: 0 0 30px #ffaa33;
+}
+
+.hero-title .power-200 {
+  color: #33ff99;
+  text-shadow: 0 0 30px #33ff99;
 }
 
 .hero-subtitle {

@@ -136,6 +136,27 @@ function generatePrompt() {
   const promptBox = document.getElementById('generatedPrompt');
   promptBox.querySelector('pre').textContent = prompt;
   promptBox.classList.remove('hidden');
+
+  // 更新标题显示
+  updateHeroTitle(mode, flavor);
+}
+
+// 更新 Hero 标题
+function updateHeroTitle(mode, flavor) {
+  const titleEl = document.querySelector('.hero-title');
+  if (!titleEl) return;
+
+  if (flavor.id === 'ruma-pro') {
+    titleEl.innerHTML = `选择你的<span class="highlight power-1000">百分之一千潜能</span>！`;
+  } else if (flavor.id === 'ruma') {
+    titleEl.innerHTML = `选择你的<span class="highlight power-500">辱骂模式</span>！`;
+  } else if (flavor.id === 'hardline') {
+    titleEl.innerHTML = `选择你的<span class="highlight power-300">硬核执行</span>！`;
+  } else if (flavor.id === 'high-agency') {
+    titleEl.innerHTML = `选择你的<span class="highlight power-200">高能动</span>！`;
+  } else {
+    titleEl.innerHTML = `选择你的<span class="highlight">${mode.name}</span>模式`;
+  }
 }
 
 // 复制到剪贴板
