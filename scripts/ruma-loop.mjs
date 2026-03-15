@@ -93,10 +93,17 @@ async function installSkill() {
 
 async function runPlaywrightTests() {
   log('运行 Playwright 测试...');
-  const result = await runCommand('npx', ['playwright', 'test', '--reporter=list']);
-  const passed = result.output.includes(' passed');
-  log(`${passed ? '✓' : '✗'} 测试完成 (${result.output.includes(' passed') ? '通过' : '失败'})`);
-  return passed;
+  const { execSync } = await import('child_process');
+  const rootDir = join(__dirname, '..');
+  try {
+    const output = execSync('npx playwright test --reporter=list', { cwd: rootDir, encoding: 'utf-8' });
+    const passed = output.includes(' passed') && !output.includes(' failed');
+    log(`${passed ? '✓' : '✗'} 测试完成`);
+    return passed;
+  } catch (e) {
+    log(`✗ 测试失败: ${e.message}`);
+    return false;
+  }
 }
 
 const tasks = [
