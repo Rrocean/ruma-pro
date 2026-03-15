@@ -165,7 +165,13 @@ function copyToClipboard() {
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.querySelector('.copy-btn');
     btn.textContent = '已复制!';
-    setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+    btn.style.background = 'var(--pua-green)';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      btn.textContent = '📋 复制';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2000);
   });
 }
 
