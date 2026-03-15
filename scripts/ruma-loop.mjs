@@ -94,8 +94,8 @@ async function installSkill() {
 async function runPlaywrightTests() {
   log('运行 Playwright 测试...');
   const result = await runCommand('npx', ['playwright', 'test', '--reporter=list']);
-  const passed = result.output.includes('✓') || result.output.includes('passed');
-  log(`${passed ? '✓' : '✗'} 测试完成`);
+  const passed = result.output.includes(' passed');
+  log(`${passed ? '✓' : '✗'} 测试完成 (${result.output.includes(' passed') ? '通过' : '失败'})`);
   return passed;
 }
 
