@@ -75,7 +75,7 @@ node bin/ruma-pro.js test
 
 ### Claude Code
 
-在对话中输入: `/ruma`
+在对话中输入: `/ruma` 即可使用辱骂模式！
 
 ## 🌐 多语言支持
 
