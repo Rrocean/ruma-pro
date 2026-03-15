@@ -28,6 +28,7 @@
       <a href="#flavors">覆盖层</a>
       <a href="#ruma">辱骂</a>
       <a href="#demo">演示</a>
+      <a href="#autotest">自动测试</a>
       <a href="#install">安装</a>
       <select id="langSelect" class="lang-select">
         <option value="zh">中文</option>
@@ -172,6 +173,49 @@
             <span class="power-level">P5</span>
             <span class="power-desc">10000%</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Auto Test Section -->
+    <section id="autotest" class="autotest-section">
+      <h2>🔄 自动测试</h2>
+      <p class="section-desc">循环运行测试，模拟持续使用场景</p>
+
+      <div class="autotest-controls">
+        <div class="autotest-option">
+          <label>运行方式:</label>
+          <select id="autoTestType">
+            <option value="times">按次数</option>
+            <option value="until">按时间</option>
+          </select>
+        </div>
+        <div class="autotest-option" id="timesOption">
+          <label>运行次数:</label>
+          <input type="number" id="autoTestTimes" value="10" min="1" max="100">
+        </div>
+        <div class="autotest-option" id="untilOption" style="display:none">
+          <label>结束时间 (HH:MM):</label>
+          <input type="time" id="autoTestUntil" value="17:00">
+        </div>
+        <div class="autotest-option">
+          <label>间隔 (分钟):</label>
+          <input type="number" id="autoTestInterval" value="5" min="1" max="60">
+        </div>
+        <div class="autotest-buttons">
+          <button id="startAutoTest" class="btn-start">▶ 开始自动测试</button>
+          <button id="stopAutoTest" class="btn-stop" disabled>⏹ 停止</button>
+        </div>
+      </div>
+
+      <div class="autotest-status" id="autotestStatus">
+        <div class="status-idle">状态: 等待开始</div>
+      </div>
+
+      <div class="autotest-log" id="autotestLog">
+        <div class="log-header">测试日志</div>
+        <div class="log-content" id="logContent">
+          <p class="log-entry">等待测试开始...</p>
         </div>
       </div>
     </section>

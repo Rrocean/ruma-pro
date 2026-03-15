@@ -1,0 +1,50 @@
+{
+  "queue": [],
+  "completed": [
+    {
+      "name": "运行测试",
+      "command": "npx playwright test --reporter=line",
+      "weight": 10,
+      "description": "运行 Playwright 测试套件",
+      "addedAt": "2026-03-15T18:54:33.113Z",
+      "completedAt": "2026-03-15T18:55:10.331Z",
+      "success": true
+    },
+    {
+      "name": "检查依赖",
+      "command": "npm outdated 2>/dev/null || echo \"OK\"",
+      "weight": 3,
+      "description": "检查过时的依赖包",
+      "addedAt": "2026-03-15T18:54:33.112Z",
+      "completedAt": "2026-03-15T18:54:52.863Z",
+      "success": true
+    },
+    {
+      "name": "生成报告",
+      "command": "node scripts/agent-report.js",
+      "weight": 5,
+      "description": "生成 Agent 测试报告",
+      "addedAt": "2026-03-15T18:54:33.112Z",
+      "completedAt": "2026-03-15T18:54:51.642Z",
+      "success": true
+    },
+    {
+      "name": "运行测试",
+      "command": "npx playwright test --reporter=line",
+      "weight": 10,
+      "description": "运行 Playwright 测试套件",
+      "addedAt": "2026-03-15T18:54:33.112Z",
+      "completedAt": "2026-03-15T18:54:51.543Z",
+      "success": true
+    },
+    {
+      "name": "检查依赖",
+      "command": "npm outdated 2>/dev/null || echo \"OK\"",
+      "weight": 3,
+      "description": "检查过时的依赖包",
+      "addedAt": "2026-03-15T18:54:33.112Z",
+      "completedAt": "2026-03-15T18:54:34.682Z",
+      "success": true
+    }
+  ]
+}

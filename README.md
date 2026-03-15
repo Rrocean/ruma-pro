@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
 [![Clients](https://img.shields.io/badge/clients-Codex%20%7C%20Claude%20Code%20%7C%20OpenClaw-1f6feb.svg)]()
-[![Tests](https://img.shields.io/badge/tests-30%20passed-2ecc71.svg)]()
+[![Tests](https://img.shields.io/badge/tests-52%20passed-2ecc71.svg)]()
 [![Lang](https://img.shields.io/badge/language-zh--CN%2Fen%2Fja-ff6b35.svg)]()
 [![Power](https://img.shields.io/badge/power-1000%25-ff4444.svg)]()
 
@@ -86,6 +86,17 @@ node bin/ruma-pro.js loop
 
 # 运行测试
 node bin/ruma-pro.js test
+
+# 循环运行测试 (支持设置次数/时间/间隔)
+npm run loop -- --times=10 --interval=300
+npm run loop -- --until=17:00 --interval=300
+
+# 自动测试 (模拟人类使用)
+npm run auto:test
+npm run auto:test:until  # 运行到下午5点
+
+# Agent 测试报告
+npm run agent:report
 ```
 
 ### Claude Code

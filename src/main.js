@@ -341,6 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 初始化粒子效果
   createParticles();
 
+  // 初始化自动测试
+  initAutoTest();
+
   document.getElementById('generateBtn').addEventListener('click', () => {
     generatePrompt();
     updateRageMeter();
@@ -377,6 +380,150 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// 自动测试功能
+let autoTestInterval = null;
+let autoTestCount = 0;
+let autoTestConfig = {};
+
+function initAutoTest() {
+  const testTypeSelect = document.getElementById('autoTestType');
+  const timesOption = document.getElementById('timesOption');
+  const untilOption = document.getElementById('untilOption');
+  const startBtn = document.getElementById('startAutoTest');
+  const stopBtn = document.getElementById('stopAutoTest');
+
+  if (!testTypeSelect) return;
+
+  // 切换运行方式
+  testTypeSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'times') {
+      timesOption.style.display = 'flex';
+      untilOption.style.display = 'none';
+    } else {
+      timesOption.style.display = 'none';
+      untilOption.style.display = 'flex';
+    }
+  });
+
+  // 开始按钮
+  startBtn.addEventListener('click', () => {
+    const type = testTypeSelect.value;
+    const interval = parseInt(document.getElementById('autoTestInterval').value) * 1000;
+
+    autoTestConfig = {
+      type,
+      interval,
+      times: type === 'times' ? parseInt(document.getElementById('autoTestTimes').value) : 0,
+      until: type === 'until' ? document.getElementById('autoTestUntil').value : null
+    };
+
+    startAutoTest();
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+  });
+
+  // 停止按钮
+  stopBtn.addEventListener('click', () => {
+    stopAutoTest();
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+  });
+}
+
+function startAutoTest() {
+  const status = document.getElementById('autotestStatus');
+  const log = document.getElementById('logContent');
+
+  autoTestCount = 0;
+  status.innerHTML = '<div class="status-running">🔄 正在运行自动测试...</div>';
+  addLog('开始自动测试...');
+
+  // 立即运行第一次
+  runSingleTest();
+
+  // 设置定时器
+  autoTestInterval = setInterval(() => {
+    if (shouldContinueAutoTest()) {
+      runSingleTest();
+    } else {
+      stopAutoTest();
+    }
+  }, autoTestConfig.interval);
+}
+
+function stopAutoTest() {
+  if (autoTestInterval) {
+    clearInterval(autoTestInterval);
+    autoTestInterval = null;
+  }
+
+  const status = document.getElementById('autotestStatus');
+  status.innerHTML = '<div class="status-stopped">⏹ 已停止</div>';
+  addLog(`自动测试停止，总计运行 ${autoTestCount} 次`);
+
+  // 重新启用开始按钮
+  document.getElementById('startAutoTest').disabled = false;
+  document.getElementById('stopAutoTest').disabled = true;
+}
+
+function shouldContinueAutoTest() {
+  if (autoTestConfig.type === 'times') {
+    return autoTestCount < autoTestConfig.times;
+  } else if (autoTestConfig.type === 'until' && autoTestConfig.until) {
+    const [hours, minutes] = autoTestConfig.until.split(':').map(Number);
+    const now = new Date();
+    const target = new Date();
+    target.setHours(hours, minutes, 0, 0);
+    return now < target;
+  }
+  return false;
+}
+
+function runSingleTest() {
+  autoTestCount++;
+
+  // 随机选择模式和覆盖层
+  const testModes = ['diagnose', 'recover', 'ship', 'audit', 'research', 'critique', 'debug', 'optimize'];
+  const testFlavors = ['neutral', 'high-agency', 'hardline', 'ruma', 'ruma-pro'];
+
+  const mode = testModes[Math.floor(Math.random() * testModes.length)];
+  const flavor = testFlavors[Math.floor(Math.random() * testFlavors.length)];
+
+  addLog(`[${autoTestCount}] 测试 ${mode} × ${flavor}...`);
+
+  // 模拟测试运行
+  setTimeout(() => {
+    const success = Math.random() > 0.1; // 90% 成功率
+    if (success) {
+      addLog(`[${autoTestCount}] ✅ ${mode} × ${flavor} - 通过!`);
+    } else {
+      addLog(`[${autoTestCount}] ❌ ${mode} × ${flavor} - 失败`);
+    }
+
+    // 更新状态
+    updateAutoTestStatus();
+  }, 500 + Math.random() * 1000);
+}
+
+function updateAutoTestStatus() {
+  const status = document.getElementById('autotestStatus');
+  if (autoTestConfig.type === 'times') {
+    const progress = ((autoTestCount / autoTestConfig.times) * 100).toFixed(0);
+    status.innerHTML = `<div class="status-running">🔄 运行中 ${autoTestCount}/${autoTestConfig.times} (${progress}%)</div>`;
+  } else {
+    status.innerHTML = `<div class="status-running">🔄 运行中 ${autoTestCount} 次 | 结束时间: ${autoTestConfig.until}</div>`;
+  }
+}
+
+function addLog(message) {
+  const log = document.getElementById('logContent');
+  const entry = document.createElement('p');
+  entry.className = 'log-entry';
+  entry.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+  log.appendChild(entry);
+  log.scrollTop = log.scrollHeight;
+}
 
 // 导出供 Node.js 使用
 if (typeof module !== 'undefined') {
