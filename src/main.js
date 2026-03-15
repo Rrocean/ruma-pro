@@ -1,5 +1,9 @@
 // RuMa-Pro 主入口
 import { modes, flavors, puaRhetoric, categories } from './data/library.js';
+import { initLanguage } from './i18n.js';
+
+// 初始化语言
+initLanguage();
 
 // 渲染模式卡片
 function renderModes() {

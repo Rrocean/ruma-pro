@@ -97,15 +97,21 @@ async function runPlaywrightTests() {
   const rootDir = join(__dirname, '..');
   try {
     const output = execSync('npx playwright test --reporter=list', { cwd: rootDir, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] });
-    log(`测试输出: ${output.substring(0, 200)}`);
-    const passed = output.includes(' passed') && !output.includes(' failed');
-    log(`${passed ? '✓' : '✗'} 测试完成`);
-    return passed;
+    log(`测试输出: ${output.substring(0, 300)}`);
+    // 检测是否有 passed 且没有 failed
+    const passedMatch = output.match(/(\d+)\s+passed/);
+    const failedMatch = output.match(/(\d+)\s+failed/);
+    const passed = passedMatch && (!failedMatch || failedMatch[1] === '0');
+    log(`${passed ? '✓' : '✗'} 测试完成 (${passedMatch ? passedMatch[1] : 0} passed)`);
+    return passed || false;
   } catch (e) {
-    log(`测试输出(错误): ${e.stdout?.substring(0, 200) || e.message}`);
-    const passed = e.stdout?.includes(' passed') && !e.stdout?.includes(' failed');
+    const output = e.stdout || e.message;
+    log(`测试输出(错误): ${output.substring(0, 300)}`);
+    const passedMatch = output.match(/(\d+)\s+passed/);
+    const failedMatch = output.match(/(\d+)\s+failed/);
+    const passed = passedMatch && (!failedMatch || failedMatch[1] === '0');
     log(`${passed ? '✓' : '✗'} 测试完成`);
-    return passed;
+    return passed || false;
   }
 }
 

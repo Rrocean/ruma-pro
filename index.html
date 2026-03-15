@@ -13,94 +13,99 @@
       <p>Agent 强化运行框架 - 带压迫感的执行协议</p>
     </div>
     <nav>
-      <a href="#modes">运行模式</a>
-      <a href="#flavors">覆盖层</a>
-      <a href="#ruma">RuMa 辱骂</a>
-      <a href="#install">安装</a>
+      <a href="#modes" data-i18n="nav.modes">运行模式</a>
+      <a href="#flavors" data-i18n="nav.flavors">覆盖层</a>
+      <a href="#ruma" data-i18n="nav.ruma">RuMa 辱骂</a>
+      <a href="#install" data-i18n="nav.install">安装</a>
+      <select id="langSelect" class="lang-select">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+      </select>
     </nav>
   </header>
 
   <main>
     <!-- Hero Section -->
     <section class="hero">
-      <h2>选择你的模式组合</h2>
-      <p>4 种运行模式 × 4 种覆盖层 = 16 种组合</p>
+      <h2 data-i18n="hero.title">选择你的模式组合</h2>
+      <p data-i18n="hero.subtitle">4 种运行模式 × 4 种覆盖层 = 16 种组合</p>
       <div class="quick-select">
         <select id="modeSelect">
-          <option value="">选择模式...</option>
+          <option value="" data-i18n="hero.selectMode">选择模式...</option>
         </select>
         <span class="x">×</span>
         <select id="flavorSelect">
-          <option value="">选择覆盖层...</option>
+          <option value="" data-i18n="hero.selectFlavor">选择覆盖层...</option>
         </select>
-        <button id="generateBtn">生成 Skill</button>
+        <button id="generateBtn" data-i18n="hero.generate">生成 Skill</button>
       </div>
       <div id="generatedPrompt" class="generated-prompt hidden">
         <pre></pre>
-        <button class="copy-btn">复制到剪贴板</button>
+        <button class="copy-btn" data-i18n="hero.copy">复制到剪贴板</button>
       </div>
     </section>
 
     <!-- Modes Section -->
     <section id="modes" class="modes-section">
-      <h2>🎯 运行模式 (Modes)</h2>
-      <p class="section-desc">选择你的任务类型</p>
+      <h2 data-i18n="modes.title">🎯 运行模式 (Modes)</h2>
+      <p class="section-desc" data-i18n="modes.desc">选择你的任务类型</p>
       <div id="modesGrid" class="cards-grid"></div>
     </section>
 
     <!-- Flavors Section -->
     <section id="flavors" class="flavors-section">
-      <h2>⚡ 覆盖层 (Overlays)</h2>
-      <p class="section-desc">选择执行强度</p>
+      <h2 data-i18n="flavors.title">⚡ 覆盖层 (Overlays)</h2>
+      <p class="section-desc" data-i18n="flavors.desc">选择执行强度</p>
       <div id="flavorsGrid" class="flavors-grid"></div>
     </section>
 
     <!-- RuMa Section -->
     <section id="ruma" class="ruma-section">
-      <h2>🔥 RuMa 辱骂话术</h2>
-      <p class="section-desc">老子忍你很久了</p>
+      <h2 data-i18n="ruma.title">🔥 RuMa 辱骂话术</h2>
+      <p class="section-desc" data-i18n="ruma.subtitle">老子忍你很久了</p>
 
       <div class="ruma-levels">
-        <h3>压力等级</h3>
+        <h3 data-i18n="ruma.levelsTitle">压力等级</h3>
         <div class="levels-grid" id="levelsGrid"></div>
       </div>
 
       <div class="ruma-flavors">
-        <h3>风味选择</h3>
+        <h3 data-i18n="ruma.flavorsTitle">风味选择</h3>
         <div class="flavors-list" id="flavorsList"></div>
       </div>
 
       <div class="checklist">
-        <h3>7 项检查清单</h3>
+        <h3 data-i18n="ruma.checklistTitle">7 项检查清单</h3>
         <ul id="checklist"></ul>
       </div>
     </section>
 
     <!-- Install Section -->
     <section id="install" class="install-section">
-      <h2>📦 安装到 Agent</h2>
+      <h2 data-i18n="install.title">📦 安装到 Agent</h2>
       <div class="install-cards">
         <div class="install-card">
           <h3>Claude Code</h3>
           <pre><code>npm run install:claude</code></pre>
-          <button onclick="copyInstall('claude')">复制命令</button>
+          <button onclick="copyInstall('claude')" data-i18n="install.copy">复制命令</button>
         </div>
         <div class="install-card">
           <h3>Codex CLI</h3>
           <pre><code>npm run install:codex</code></pre>
-          <button onclick="copyInstall('codex')">复制命令</button>
+          <button onclick="copyInstall('codex')" data-i18n="install.copy">复制命令</button>
         </div>
         <div class="install-card">
           <h3>OpenClaw</h3>
           <pre><code>npm run install:openclaw</code></pre>
-          <button onclick="copyInstall('openclaw')">复制命令</button>
+          <button onclick="copyInstall('openclaw')" data-i18n="install.copy">复制命令</button>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>基于 tanweai/pua × PUAClaw × ruma-runtime 构建</p>
+    <p data-i18n="footer.credits">基于 tanweai/pua × PUAClaw × ruma-runtime 构建</p>
     <p>MIT License</p>
   </footer>
 

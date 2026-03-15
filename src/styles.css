@@ -69,6 +69,20 @@ nav a:hover {
   color: var(--accent);
 }
 
+.lang-select {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.lang-select:hover {
+  border-color: var(--accent);
+}
+
 /* Main */
 main {
   max-width: 1200px;
