@@ -192,7 +192,27 @@ function updateRageMeter() {
   if (flavor) {
     const rage = flavor.intensity * 20;
     rageFill.style.width = `${rage}%`;
-    rageValue.textContent = `${rage}%`;
+
+    // 动态显示能量等级
+    const powerLevels = {
+      1: '20%',
+      2: '40%',
+      3: '60%',
+      4: '80%',
+      5: '1000%'
+    };
+    rageValue.textContent = powerLevels[flavor.intensity] || `${rage}%`;
+
+    // 添加特效
+    if (flavor.intensity >= 4) {
+      rageFill.style.animation = 'extremePulse 0.5s ease infinite';
+    } else {
+      rageFill.style.animation = '';
+    }
+  } else {
+    rageFill.style.width = '0%';
+    rageValue.textContent = '0%';
+    rageFill.style.animation = '';
   }
 }
 
