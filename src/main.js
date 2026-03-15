@@ -224,6 +224,62 @@ function copyLink() {
   alert('链接已复制！');
 }
 
+// 键盘快捷键
+function initKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    // 按 G 生成
+    if (e.key === 'g' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'SELECT') {
+      const modeSelect = document.getElementById('modeSelect');
+      const flavorSelect = document.getElementById('flavorSelect');
+      if (modeSelect.value && flavorSelect.value) {
+        generatePrompt();
+        updateRageMeter();
+      }
+    }
+    // 按 R 随机
+    if (e.key === 'r' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'SELECT') {
+      shuffle();
+    }
+    // 按 S 复制
+    if (e.key === 's' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'SELECT') {
+      const promptBox = document.getElementById('generatedPrompt');
+      if (!promptBox.classList.contains('hidden')) {
+        copyToClipboard();
+      }
+    }
+    // 按 1-5 快速选择覆盖层
+    if (e.key >= '1' && e.key <= '5' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'SELECT') {
+      const flavors = ['neutral', 'high-agency', 'hardline', 'ruma', 'ruma-pro'];
+      const idx = parseInt(e.key) - 1;
+      document.getElementById('flavorSelect').value = flavors[idx];
+    }
+  });
+}
+
+// 粒子效果
+function createParticles() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.cssText = `
+      position: absolute;
+      width: ${Math.random() * 6 + 2}px;
+      height: ${Math.random() * 6 + 2}px;
+      background: hsl(${Math.random() * 40 + 10}, 100%, 60%);
+      border-radius: 50%;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: ${Math.random() * 0.5 + 0.3};
+      animation: float ${Math.random() * 3 + 2}s infinite ease-in-out;
+      pointer-events: none;
+    `;
+    hero.appendChild(particle);
+  }
+}
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
   renderModes();
@@ -231,6 +287,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPressureLevels();
   renderRuMaFlavors();
   renderChecklist();
+
+  // 初始化键盘快捷键
+  initKeyboardShortcuts();
+
+  // 初始化粒子效果
+  createParticles();
 
   document.getElementById('generateBtn').addEventListener('click', () => {
     generatePrompt();
