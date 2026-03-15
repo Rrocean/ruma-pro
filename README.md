@@ -5,14 +5,16 @@
 [![License](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
 [![Clients](https://img.shields.io/badge/clients-Codex%20%7C%20Claude%20Code%20%7C%20OpenClaw-1f6feb.svg)]()
 [![Tests](https://img.shields.io/badge/tests-14%20passed-2ecc71.svg)]()
+[![Lang](https://img.shields.io/badge/language-zh--CN%2Fen%2Fja-ff6b35.svg)]()
 
 ## ⚡ 特性
 
-- **4 种运行模式**: diagnose / recover / ship / audit / research / critique
+- **4 种运行模式**: diagnose / recover / ship / audit / research / critique / debug / optimize
 - **4 种覆盖层**: neutral / high-agency / hardline / **ruma**
-- **16 种组合**: 4 × 4 = 16 种工作模式
+- **16+ 种组合**: 4 × 4 = 16 种工作模式
 - **一键安装**: 支持 Claude Code / Codex / OpenClaw / Cursor
 - **Web UI**: 可视化选择模式组合
+- **多语言**: 中文 / English / 日本語
 - **自动化测试**: 每5分钟自检
 
 ## 🚀 快速开始
@@ -75,6 +77,31 @@ node bin/ruma-pro.js test
 
 在对话中输入: `/ruma`
 
+## 🌐 多语言支持
+
+Web UI 支持三种语言：中文、English、日本語
+
+切换语言：访问 http://localhost:3000，点击右上角语言选择器
+
+### 多语言版本
+
+| 版本 | 语言 | Skill 路径 |
+|------|------|-----------|
+| ruma-pro | 中文 | `adapters/claude/ruma-pro/SKILL.md` |
+| ruma-en | English | `adapters/claude/ruma-en/SKILL.md` |
+| ruma-ja | 日本語 | `adapters/claude/ruma-ja/SKILL.md` |
+
+```bash
+# 安装中文版 (默认)
+npm run install:claude
+
+# 安装英文版
+cp adapters/claude/ruma-en/SKILL.md ~/.claude/skills/ruma-pro/SKILL.md
+
+# 安装日文版
+cp adapters/claude/ruma-ja/SKILL.md ~/.claude/skills/ruma-pro/SKILL.md
+```
+
 ## 📋 模式 × 覆盖层
 
 |  | neutral | high-agency | hardline | ruma |
@@ -134,9 +161,13 @@ ruma-pro/
 ├── src/
 │   ├── main.js           # 主逻辑
 │   ├── styles.css        # 样式
+│   ├── i18n.js           # 国际化
 │   └── data/library.js   # 核心数据
 ├── adapters/
-│   ├── claude/ruma-pro/SKILL.md    # Claude Code
+│   ├── claude/
+│   │   ├── ruma-pro/SKILL.md    # 中文版
+│   │   ├── ruma-en/SKILL.md     # 英文版
+│   │   └── ruma-ja/SKILL.md     # 日文版
 │   ├── codex/ruma-pro/SKILL.md     # Codex
 │   ├── cursor/ruma-pro.mdc         # Cursor
 │   └── openclaw/ruma-pro/SKILL.md  # OpenClaw
