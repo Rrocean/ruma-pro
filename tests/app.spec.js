@@ -69,6 +69,15 @@ test.describe('RuMa-Pro Web UI', () => {
     await expect(page.locator('#generatedPrompt pre')).not.toBeEmpty();
   });
 
+  test('ruma-pro 1000% power mode', async ({ page }) => {
+    await page.goto('/');
+    await page.selectOption('#modeSelect', 'ship');
+    await page.selectOption('#flavorSelect', 'ruma-pro');
+    await page.click('#generateBtn');
+    const text = await page.locator('#generatedPrompt pre').textContent();
+    expect(text).toContain('1000');
+  });
+
   test('card click works', async ({ page }) => {
     await page.goto('/');
     await page.click('.card:first-child .use-btn');
@@ -102,10 +111,10 @@ test.describe('RuMa-Pro Web UI', () => {
     expect(options).toBe(9); // 1 empty + 8 modes
   });
 
-  test('all 4 flavors available', async ({ page }) => {
+  test('all 5 flavors available', async ({ page }) => {
     await page.goto('/');
     const options = await page.locator('#flavorSelect option').count();
-    expect(options).toBe(5); // 1 empty + 4 flavors
+    expect(options).toBe(6); // 1 empty + 5 flavors (including ruma-pro)
   });
 
   test('generate all mode combinations', async ({ page }) => {
