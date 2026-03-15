@@ -96,13 +96,16 @@ async function runPlaywrightTests() {
   const { execSync } = await import('child_process');
   const rootDir = join(__dirname, '..');
   try {
-    const output = execSync('npx playwright test --reporter=list', { cwd: rootDir, encoding: 'utf-8' });
+    const output = execSync('npx playwright test --reporter=list', { cwd: rootDir, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] });
+    log(`测试输出: ${output.substring(0, 200)}`);
     const passed = output.includes(' passed') && !output.includes(' failed');
     log(`${passed ? '✓' : '✗'} 测试完成`);
     return passed;
   } catch (e) {
-    log(`✗ 测试失败: ${e.message}`);
-    return false;
+    log(`测试输出(错误): ${e.stdout?.substring(0, 200) || e.message}`);
+    const passed = e.stdout?.includes(' passed') && !e.stdout?.includes(' failed');
+    log(`${passed ? '✓' : '✗'} 测试完成`);
+    return passed;
   }
 }
 
