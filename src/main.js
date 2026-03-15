@@ -160,6 +160,70 @@ function copyInstall(type) {
   });
 }
 
+// 随机选择功能
+function shuffle() {
+  const modeSelect = document.getElementById('modeSelect');
+  const flavorSelect = document.getElementById('flavorSelect');
+
+  // 随机选择模式
+  const modeOptions = Array.from(modeSelect.options).filter(opt => opt.value);
+  const randomMode = modeOptions[Math.floor(Math.random() * modeOptions.length)].value;
+  modeSelect.value = randomMode;
+
+  // 随机选择覆盖层
+  const flavorOptions = Array.from(flavorSelect.options).filter(opt => opt.value);
+  const randomFlavor = flavorOptions[Math.floor(Math.random() * flavorOptions.length)].value;
+  flavorSelect.value = randomFlavor;
+
+  // 生成并显示
+  generatePrompt();
+
+  // 更新愤怒值
+  updateRageMeter();
+}
+
+// 愤怒值系统
+function updateRageMeter() {
+  const flavorSelect = document.getElementById('flavorSelect');
+  const flavor = flavors.find(f => f.id === flavorSelect.value);
+  const rageFill = document.getElementById('rageFill');
+  const rageValue = document.getElementById('rageValue');
+
+  if (flavor) {
+    const rage = flavor.intensity * 20;
+    rageFill.style.width = `${rage}%`;
+    rageValue.textContent = `${rage}%`;
+  }
+}
+
+// 演示功能
+function runDemo() {
+  const demoOutput = document.getElementById('demoOutput');
+  const lines = demoOutput.querySelectorAll('.typing-effect');
+
+  lines.forEach((line, index) => {
+    line.style.animation = 'none';
+    line.offsetHeight; // Trigger reflow
+    line.style.animation = `typing 0.5s ease forwards ${index * 0.5}s`;
+  });
+}
+
+// 分享功能
+function shareTwitter() {
+  const url = encodeURIComponent('https://github.com/Rrocean/ruma-pro');
+  const text = encodeURIComponent('🔥 RuMa-Pro - Agent 强化运行框架！百分之一千潜能激发！');
+  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+}
+
+function shareWechat() {
+  alert('微信扫一扫访问: https://github.com/Rrocean/ruma-pro');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://github.com/Rrocean/ruma-pro');
+  alert('链接已复制！');
+}
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
   renderModes();
@@ -168,8 +232,23 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRuMaFlavors();
   renderChecklist();
 
-  document.getElementById('generateBtn').addEventListener('click', generatePrompt);
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    generatePrompt();
+    updateRageMeter();
+  });
+  document.getElementById('shuffleBtn').addEventListener('click', shuffle);
   document.querySelector('.copy-btn').addEventListener('click', copyToClipboard);
+
+  // 演示按钮
+  const runDemoBtn = document.getElementById('runDemoBtn');
+  if (runDemoBtn) {
+    runDemoBtn.addEventListener('click', runDemo);
+  }
+
+  // 分享按钮
+  window.shareTwitter = shareTwitter;
+  window.shareWechat = shareWechat;
+  window.copyLink = copyLink;
 
   // 卡片点击事件
   document.getElementById('modesGrid').addEventListener('click', (e) => {
@@ -185,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const flavorId = e.target.dataset.flavor;
       document.getElementById('flavorSelect').value = flavorId;
       generatePrompt();
+      updateRageMeter();
     }
   });
 });
