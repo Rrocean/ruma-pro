@@ -1,0 +1,27 @@
+---
+description: RuMa-Pro - Agent 强化运行框架
+---
+
+# RuMa-Pro
+
+## 模式
+
+- diagnose: 诊断
+- recover: 恢复
+- ship: 交付
+- audit: 审计
+- research: 研究
+- critique: 批判
+
+## 覆盖层
+
+- neutral: 中立
+- high-agency: 高能动
+- hardline: 硬核
+- pua: 辱骂
+
+## 使用
+
+`/ruma-pro [模式] [覆盖层]`
+
+例: `/ruma-pro diagnose pua`

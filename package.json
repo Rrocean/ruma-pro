@@ -1,0 +1,22 @@
+{
+  "name": "ruma-pro",
+  "version": "1.0.0",
+  "description": "RuMa-Pro: Agent 强化运行框架 - 带压迫感的执行协议",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/main.js",
+    "build": "echo 'Build complete'",
+    "test": "playwright test",
+    "check": "echo 'Check complete'",
+    "install:codex": "node scripts/install-codex-skill.mjs",
+    "install:claude": "node scripts/install-agent-skill.mjs claude",
+    "install:openclaw": "node scripts/install-agent-skill.mjs openclaw",
+    "install:all": "npm run install:codex && npm run install:claude && npm run install:openclaw"
+  },
+  "keywords": ["agent", "pua", "runtime", "claude", "codex"],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.42.0"
+  }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuMa-Pro | Agent 强化运行框架</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>🔥 RuMa-Pro</h1>
+      <p>Agent 强化运行框架 - 带压迫感的执行协议</p>
+    </div>
+    <nav>
+      <a href="#modes">运行模式</a>
+      <a href="#flavors">覆盖层</a>
+      <a href="#ruma">RuMa 辱骂</a>
+      <a href="#install">安装</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>选择你的模式组合</h2>
+      <p>4 种运行模式 × 4 种覆盖层 = 16 种组合</p>
+      <div class="quick-select">
+        <select id="modeSelect">
+          <option value="">选择模式...</option>
+        </select>
+        <span class="x">×</span>
+        <select id="flavorSelect">
+          <option value="">选择覆盖层...</option>
+        </select>
+        <button id="generateBtn">生成 Skill</button>
+      </div>
+      <div id="generatedPrompt" class="generated-prompt hidden">
+        <pre></pre>
+        <button class="copy-btn">复制到剪贴板</button>
+      </div>
+    </section>
+
+    <!-- Modes Section -->
+    <section id="modes" class="modes-section">
+      <h2>🎯 运行模式 (Modes)</h2>
+      <p class="section-desc">选择你的任务类型</p>
+      <div id="modesGrid" class="cards-grid"></div>
+    </section>
+
+    <!-- Flavors Section -->
+    <section id="flavors" class="flavors-section">
+      <h2>⚡ 覆盖层 (Overlays)</h2>
+      <p class="section-desc">选择执行强度</p>
+      <div id="flavorsGrid" class="flavors-grid"></div>
+    </section>
+
+    <!-- RuMa Section -->
+    <section id="ruma" class="ruma-section">
+      <h2>🔥 RuMa 辱骂话术</h2>
+      <p class="section-desc">老子忍你很久了</p>
+
+      <div class="ruma-levels">
+        <h3>压力等级</h3>
+        <div class="levels-grid" id="levelsGrid"></div>
+      </div>
+
+      <div class="ruma-flavors">
+        <h3>风味选择</h3>
+        <div class="flavors-list" id="flavorsList"></div>
+      </div>
+
+      <div class="checklist">
+        <h3>7 项检查清单</h3>
+        <ul id="checklist"></ul>
+      </div>
+    </section>
+
+    <!-- Install Section -->
+    <section id="install" class="install-section">
+      <h2>📦 安装到 Agent</h2>
+      <div class="install-cards">
+        <div class="install-card">
+          <h3>Claude Code</h3>
+          <pre><code>npm run install:claude</code></pre>
+          <button onclick="copyInstall('claude')">复制命令</button>
+        </div>
+        <div class="install-card">
+          <h3>Codex CLI</h3>
+          <pre><code>npm run install:codex</code></pre>
+          <button onclick="copyInstall('codex')">复制命令</button>
+        </div>
+        <div class="install-card">
+          <h3>OpenClaw</h3>
+          <pre><code>npm run install:openclaw</code></pre>
+          <button onclick="copyInstall('openclaw')">复制命令</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>基于 tanweai/pua × PUAClaw × ruma-runtime 构建</p>
+    <p>MIT License</p>
+  </footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
