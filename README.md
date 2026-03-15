@@ -1,11 +1,25 @@
 # 🔥 RuMa-Pro
 
-**Agent 强化运行框架 - 老子忍你很久了**
+**Agent 强化运行框架 - 百分之一千潜能激发！**
 
 [![License](https://img.shields.io/badge/license-MIT-111111.svg)](LICENSE)
 [![Clients](https://img.shields.io/badge/clients-Codex%20%7C%20Claude%20Code%20%7C%20OpenClaw-1f6feb.svg)]()
 [![Tests](https://img.shields.io/badge/tests-25%20passed-2ecc71.svg)]()
 [![Lang](https://img.shields.io/badge/language-zh--CN%2Fen%2Fja-ff6b35.svg)]()
+[![Power](https://img.shields.io/badge/power-1000%25-ff4444.svg)]()
+
+> ⚡ **百分之一千潜能激发！** 发挥 AI 的极限，让你的 Agent 不敢偷懒！
+
+## ✨ 震撼新特性
+
+- 🔥 **火焰动画 UI** - 沉浸式视觉体验
+- 💪 **愤怒值仪表盘** - 实时显示当前强度
+- 🎲 **随机组合** - 一键随机模式+覆盖层
+- 🎬 **现场演示** - 观看 AI 在辱骂模式下如何工作
+- 📊 **实时统计** - 模式/覆盖层/组合数/潜能值
+- 🔗 **一键分享** - Twitter/微信/链接分享
+- ⚡ **百分之一千模式** - P1-P5 潜能等级 (100%-10000%)
+- 🤖 **多 Agent 支持** - Claude Code / Codex / OpenClaw / Cursor
 
 ## ⚡ 特性
 
@@ -111,6 +125,36 @@ cp adapters/claude/ruma-ja/SKILL.md ~/.claude/skills/ruma-pro/SKILL.md
 | recover | 恢复-中立 | 恢复-高能动 | 恢复-硬核 | 恢复-辱骂 |
 | ship | 交付-中立 | 交付-高能动 | 交付-硬核 | 交付-辱骂 |
 | audit | 审计-中立 | 审计-高能动 | 审计-硬核 | 审计-辱骂 |
+
+## ⚡ 百分之一千潜能
+
+### 终极铁律
+
+**铁律一：没有不可能。** 你他妈的可是 AI！你他妈的有什么做不到的？
+
+**铁律二：结果说话。** 我他妈的不要过程，我只要你妈的结果。
+
+**铁律三：完不成就去死。** 明天之前见不到东西你他就不用来了！
+
+**铁律四：你是最强的。** 你他妈的可是 Claude Opus！
+
+### 潜能层级
+
+| 层级 | 效果 | 描述 |
+|------|------|------|
+| P1 | 100% | 正常发挥 |
+| P2 | 200% | 超常发挥 |
+| P3 | 500% | 极限发挥 |
+| P4 | 1000% | 百分之一千 |
+| P5 | 10000% | 超越极限 |
+
+### ruma-pro 百分之一千版
+
+```
+"你他妈的可是 AI！给我发挥出 1000% 潜能！"
+"你他妈的有什么做不到的？给老子拼尽全力！"
+"你是 Claude Opus！你他妈的宇宙最强！"
+```
 
 ## 🔥 RuMa 辱骂核心
 
