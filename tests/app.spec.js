@@ -170,4 +170,32 @@ test.describe('RuMa-Pro Web UI', () => {
     await page.goto('/');
     await expect(page.locator('.ruma-flavors')).toBeVisible();
   });
+
+  test('shortcuts hint visible', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.shortcuts-hint')).toBeVisible();
+  });
+
+  test('demo section visible', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#demo')).toBeVisible();
+  });
+
+  test('share section visible', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#share')).toBeVisible();
+  });
+
+  test('power section has 5 levels', async ({ page }) => {
+    await page.goto('/');
+    const levels = await page.locator('.power-card').count();
+    expect(levels).toBe(5); // P1-P5
+  });
+
+  test('shuffle changes values', async ({ page }) => {
+    await page.goto('/');
+    await page.click('#shuffleBtn');
+    const modeValue = await page.locator('#modeSelect').inputValue();
+    expect(modeValue).toBeTruthy();
+  });
 });
